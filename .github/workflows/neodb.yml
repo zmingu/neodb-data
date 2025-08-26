@@ -50,7 +50,7 @@ jobs:
               echo "Syncing ${category}_${type}..."
 
               # 下载第一页数据
-              curl -s -X GET "https://neodb.social/api/me/shelf/${type}?category=${category}&page=1" \
+              curl -s -X GET "https://neodb.prvcy.page/api/me/shelf/${type}?category=${category}&page=1" \
                 -H "accept: application/json" \
                 -H "Authorization: Bearer ${{ secrets.NEODB_ACCESS_TOKEN }}" \
                 -o "${category}_${type}1.json"
@@ -73,7 +73,7 @@ jobs:
               # 批量下载所有分页数据
               for ((i=1; i<=pages; i++)); do
                 echo "Downloading page $i of ${category}_${type}"
-                curl -s -X GET "https://neodb.social/api/me/shelf/${type}?category=${category}&page=$i" \
+                curl -s -X GET "https://neodb.prvcy.page/api/me/shelf/${type}?category=${category}&page=$i" \
                   -H "accept: application/json" \
                   -H "Authorization: Bearer ${{ secrets.NEODB_ACCESS_TOKEN }}" \
                   -o "tmp/neodb/${category}_${type}/${category}_${type}${i}.json"
